@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>게시판 이용규칙</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/6.4.0/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+    <div class="container">
+        <div class="py-5 d-flex justify-content-between">
+            <a th:href="@{/}" class="text-decoration-none text-dark fs-1 fw-bold">게시판</a>
+            <a th:href="@{/member/login}" class="text-decoration-none text-dark fs-2">로그인</a>
+        </div>
+
+        <div class="py-5">
+            <table class="table">
+                <tbody>
+                <tr>
+                    <td><h2><span class="badge bg-primary">공지</span> 게시판 이용규칙</h2></td>
+                    <td class="align-middle text-end"><i class="fa-solid fa-eye"></i> 조회 수 10</td>
+                </tr>
+                <tr>
+                    <td class="p-3" colspan="2">
+                        <div class="d-flex justify-content-end align-items-center">
+                            <p class="text-secondary mb-0"><i class="fa-solid fa-link"></i> http://localhost/board/gongji</p>
+                            <a href="#" class="btn btn-outline-primary btn-sm ms-2">복사</a>
+                        </div>
+                        <p class="mb-0 pb-3">안녕하세요. 유저 여러분 운영진입니다.<br>쾌적한 사이트 운영을 위해 몇가지 안내를 드리고자 합니다.<br><br>(이하생략)<br><br>사이트 이용에 불편함이 없게 최선을 다하겠습니다.<br>감사합니다.</p>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-between">
+                <a href="#" class="btn btn-outline-secondary">목록</a>
+                <div class="btn-group">
+                    <a href="#" class="btn btn-outline-primary">이전글</a>
+                    <a href="#" class="btn btn-primary">다음글</a>
+                </div>
+                <a href="#" class="btn btn-danger">신고</a>
+            </div>
+
+            <div class="py-5 my-5">
+                <div class="d-flex align-items-center">
+                    <h4>댓글 4</h4>
+                    <a href="#" class="btn btn-outline-primary btn-sm ms-3">새로고침</a>
+                </div>
+
+                <ul class="list-group list-group-flush my-5">
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <b>댕댕이</b>
+                                <small>2023/08/05 오후 10:00</small>
+                                <a href="#"><span class="badge bg-secondary">답글</span></a>
+                                <a href="#"><span class="badge bg-danger">신고</span></a>
+                            </div>
+                            <div class="d-flex">
+                                <p class="mx-2">추천 0</p>
+                                <a href="#" class="mx-2 text-dark"><i class="fa-regular fa-thumbs-up"></i></a>&nbsp;
+                                <a href="#" class="text-dark"><i class="fa-regular fa-thumbs-down"></i></a>
+                            </div>
+                        </div>
+                        <p>asdf</p>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <b>댕댕이</b>
+                                <small>2023/08/05 오후 10:00</small>
+                                <a href="#"><span class="badge bg-secondary">답글</span></a>
+                                <a href="#"><span class="badge bg-danger">신고</span></a>
+                            </div>
+                            <div class="d-flex">
+                                <p class="mx-2">추천 0</p>
+                                <a href="#" class="mx-2 text-dark"><i class="fa-regular fa-thumbs-up"></i></a>&nbsp;
+                                <a href="#" class="text-dark"><i class="fa-regular fa-thumbs-down"></i></a>
+                            </div>
+                        </div>
+                        <p>asdf</p>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <b>댕댕이</b>
+                                <small>2023/08/05 오후 10:00</small>
+                                <a href="#"><span class="badge bg-secondary">답글</span></a>
+                                <a href="#"><span class="badge bg-danger">신고</span></a>
+                            </div>
+                            <div class="d-flex">
+                                <p class="mx-2">추천 0</p>
+                                <a href="#" class="mx-2 text-dark"><i class="fa-regular fa-thumbs-up"></i></a>&nbsp;
+                                <a href="#" class="text-dark"><i class="fa-regular fa-thumbs-down"></i></a>
+                            </div>
+                        </div>
+                        <p>asdf</p>
+                    </li>
+                    <li class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <b>댕댕이</b>
+                                <small>2023/08/05 오후 10:00</small>
+                                <a href="#"><span class="badge bg-secondary">답글</span></a>
+                                <a href="#"><span class="badge bg-danger">신고</span></a>
+                            </div>
+                            <div class="d-flex">
+                                <p class="mx-2">추천 0</p>
+                                <a href="#" class="mx-2 text-dark"><i class="fa-regular fa-thumbs-up"></i></a>&nbsp;
+                                <a href="#" class="text-dark"><i class="fa-regular fa-thumbs-down"></i></a>
+                            </div>
+                        </div>
+                        <p>asdf</p>
+                    </li>
+                </ul>
+
+                <nav class="d-flex justify-content-center">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a href="#" class="page-link disabled">이전</a>
+                        </li>
+                        <li class="page-item">
+                            <a href="#" class="page-link active">1</a>
+                        </li>
+                        <li class="page-item">
+                            <a href="#" class="page-link disabled">다음</a>
+                        </li>
+                    </ul>
+                </nav>
+
+                <form th:action="@{/board/comment/upload}" method="post" class="my-5">
+                    <div class="input-group">
+                        <textarea class="form-control" placeholder="댓글 입력" id="comment" name="comment"></textarea>
+                        <button type="submit" class="btn btn-primary">올리기</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <footer class="py-5 my-5">
+            Copyright &copy; 2023 <b>GF</b>. All Rights Reserved.
+        </footer>
+    </div>
+</body>
+</html>

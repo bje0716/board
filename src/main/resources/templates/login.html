@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>로그인</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/6.4.0/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+    <div class="container">
+        <div class="py-5 d-flex justify-content-between">
+            <a href="#" class="text-decoration-none text-dark fs-1 fw-bold">로그인</a>
+            <div>
+                <a th:href="@{/}" class="text-decoration-none text-dark fs-2 mx-3">홈으로</a>
+                <a th:href="@{/member/join}" class="text-decoration-none text-dark fs-2">회원가입</a>
+            </div>
+        </div>
+
+        <div class="py-5">
+            <form th:action="@{/member/loginAction}" method="post">
+                <div class="mb-3">
+                    <label for="email" class="form-label">이메일</label>
+                    <input type="email" name="email" id="email" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">비밀번호</label>
+                    <input type="password" name="password" id="password" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <input type="checkbox" name="remember" id="remember" class="form-check-input">
+                    <label for="remember" class="form-check-label">이메일 기억하기</label>
+                </div>
+                <div class="pt-2 d-flex justify-content-center">
+                    <a th:href="@{/member/find}" class="text-decoration-none text-dark fs-5">계정 찾기</a>
+                </div>
+                <div class="d-flex justify-content-center py-5">
+                    <button type="submit" class="btn btn-primary">로그인</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="py-5">
+            <p class="fs-2">다른 계정으로 로그인</p>
+            <div class="py-2">
+                <a href="#" class="py-2 px-4 btn text-white" style="background: #db4a39">구글 계정</a>
+                <a href="#" class="py-2 px-4 btn" style="background: #FEE500">카카오 계정</a>
+                <a href="#" class="py-2 px-4 btn text-white" style="background: #2db400">네이버 계정</a>
+                <a href="#" class="py-2 px-4 btn text-white" style="background: #00acee;">트위터 계정</a>
+                <a href="#" class="py-2 px-4 btn text-white" style="background: #3b5998">페이스북 계정</a>
+            </div>
+        </div>
+
+        <footer class="py-5 my-5">
+            Copyright &copy; 2023 <b>GF</b>. All Rights Reserved.
+        </footer>
+    </div>
+</body>
+</html>

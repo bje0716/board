@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>회원가입</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.3.0/css/bootstrap.min.css}">
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/6.4.0/css/all.min.css}">
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+    <script th:src="@{/webjars/jquery/3.7.0/jquery.min.js}"></script>
+</head>
+<script>
+    function postcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
+                var addr = '';
+                var extraAddr = '';
+
+                if (data.userSelectedType === 'R') {
+                    addr = data.roadAddress;
+                } else {
+                    addr = data.jibunAddress;
+                }
+
+                if (data.userSelectedType === 'R') {
+                    if (data.bname !== '' && /[동|로|가]$/g.test(data.bname)) {
+                        extraAddr += data.bname;
+                    }
+
+                    if (data.buildingName !== '' && data.apartment === 'Y') {
+                        extraAddr += (extraAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                    }
+
+                    if (extraAddr !== '') {
+                        extraAddr = ' (' + extraAddr + ')';
+                    }
+
+                } else {
+                    document.getElementById("").value = '';
+                }
+
+                document.getElementById('postcode').value = data.zonecode;
+                document.getElementById('address').value = addr;
+                document.getElementById("address").value += extraAddr;
+                document.getElementById('detail_address').focus();
+            }
+        }).open();
+    }
+
+    function emailCheck() {
+        var email = document.getElementById('email').value;
+        $.ajax({
+            type: "post",
+            url: "/member/email_check",
+            data: email,
+            success: function(data) {
+                if (data == "ok") alert("이메일 사용가능합니다.");
+                else alert("이메일 중복입니다.");
+            },
+            error: function(error) {
+                alert("에러 발생 : " + error);
+                document.getElementById('email').value = '';
+            }
+        });
+    }
+</script>
+<body>
+<div class="container">
+    <div class="py-5 d-flex justify-content-between">
+            <a href="#" class="text-decoration-none text-dark fs-1 fw-bold">회원가입</a>
+            <div>
+                <a th:href="@{/}" class="text-decoration-none text-dark fs-2 mx-3">홈으로</a>
+                <a th:href="@{/member/login}" class="text-decoration-none text-dark fs-2">로그인</a>
+            </div>
+        </div>
+
+        <div class="py-5">
+            <form th:action="@{/member/joinAction}" method="post">
+                <div class="mb-3">
+                    <label for="name" class="form-label">이름</label>
+                    <input type="text" class="form-control" id="name" name="name">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">이메일</label>
+                    <a href="#" onclick="emailCheck()"><span class="badge bg-primary">중복확인</span></a>
+                    <input type="email" class="form-control" id="email" name="email">
+                </div>
+                <div class="mb-3">
+                    <input type="checkbox" name="" id="" class="form-check-input" checked>
+                    <label for="" class="form-check-label">이메일 수신 동의</label>
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">비밀번호</label>
+                    <input type="text" class="form-control" id="password" name="password" placeholder="2자이상 8자이하 특수문자 포함">
+                </div>
+                <div class="mb-3">
+                    <div class="row">
+                        <div class="col-md-2">
+                            <label for="postcode" class="form-label">우편번호</label>
+                            <a href="#" onclick="postcode()"><span class="badge bg-primary">주소찾기</span></a>
+                            <input type="number" class="form-control" readonly id="postcode" disabled>
+                        </div>
+                        <div class="col">
+                            <label for="address" class="form-label">주소</label>
+                            <input type="text" class="form-control" readonly id="address" disabled>
+                        </div>
+                        <div class="col">
+                            <label for="detail_address" class="form-label">상세 주소</label>
+                            <input type="text" class="form-control" id="detail_address" name="detail_address">
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">전화번호</label>
+                    <div class="d-flex">
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" id="tel1" name="tel1">
+                        </div>&nbsp;-&nbsp;
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" id="tel2" name="tel2">
+                        </div>&nbsp;-&nbsp;
+                        <div class="col-md-2">
+                            <input type="text" class="form-control" id="tel3" name="tel3">
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <input type="checkbox" name="" id="" class="form-check-input" checked>
+                    <label for="" class="form-check-label">문자(SMS) 수신 동의</label>
+                </div>
+                <div class="mb-3">
+                    <label for="birthday" class="form-label">생년월일</label>
+                    <div class="col-md-2">
+                        <input type="date" name="birthday" id="birthday" class="form-control">
+                    </div>
+                </div>
+                <div class="py-5 d-flex justify-content-center">
+                    <button type="reset" class="btn btn-outline-primary mx-2">재작성</button>
+                    <button type="submit" class="btn btn-primary">가입하기</button>
+                </div>
+            </form>
+
+            <div class="py-5">
+                <p class="fs-2">다른 계정으로 가입하기</p>
+                <div class="py-2">
+                    <a href="#" class="py-2 px-4 btn text-white" style="background: #db4a39">구글 계정</a>
+                    <a href="#" class="py-2 px-4 btn" style="background: #FEE500">카카오 계정</a>
+                    <a href="#" class="py-2 px-4 btn text-white" style="background: #2db400">네이버 계정</a>
+                    <a href="#" class="py-2 px-4 btn text-white" style="background: #00acee;">트위터 계정</a>
+                    <a href="#" class="py-2 px-4 btn text-white" style="background: #3b5998">페이스북 계정</a>
+                </div>
+            </div>
+
+            <footer class="py-5 my-5">
+                Copyright &copy; 2023 <b>GF</b>. All Rights Reserved.
+            </footer>
+        </div>
+    </div>
+</body>
+</html>
